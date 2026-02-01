@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mannat 💖 Be My Valentine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#ff2d55;
+  --pink:#ffb6c1;
+  --white:#fff;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Baloo 2', cursive;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.4), transparent 40%),
+    repeating-linear-gradient(45deg,#ffd1dc 0 10px,#ffe6ef 10px 20px),
+    linear-gradient(135deg,#ff758f,#ff4d6d);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+.card{
+  background:rgba(255,255,255,.95);
+  padding:28px;
+  border-radius:28px;
+  max-width:500px;
+  box-shadow:0 25px 60px rgba(0,0,0,.25);
+  position:relative;
+  transition: all 0.4s ease;
+}
+
+.hero img{
+  width:180px;
+  border-radius:16px;
+  margin-bottom:10px;
+  transition: transform 0.3s ease;
+}
+
+h1{
+  color:var(--red);
+  margin:10px 0;
+  font-family:'Pacifico', cursive;
+  font-size:2rem;
+}
+
+p{
+  color:#444;
+  font-size:1.05rem;
+  line-height:1.5;
+}
+
+.buttons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  margin-top:22px;
+}
+
+button{
+  border:none;
+  border-radius:50px;
+  padding:14px 28px;
+  font-size:1.1rem;
+  cursor:pointer;
+  transition:.3s;
+  font-family:'Baloo 2', cursive;
+}
+
+.yes{
+  background:var(--pink);
+  color:var(--white);
+  border:3px solid var(--white);
+  font-size:1.3rem;
+  transform:scale(1.1);
+}
+.no{
+  background:#eee;
+  color:#333;
+  border:2px solid #ccc;
+}
+
+.gifts button{
+  margin:8px;
+  background:var(--pink);
+  color:var(--white);
+  border:3px solid var(--white);
+  font-size:1rem;
+}
+
+.heart, .flower, .balloon{
+  position:fixed;
+  bottom:-30px;
+  animation:float 6s linear forwards;
+  pointer-events:none;
+  font-size:26px;
+}
+
+.quiz-option{
+  display:block;
+  margin:10px auto;
+  background:var(--pink);
+  border-radius:50px;
+  padding:14px 20px;
+  cursor:pointer;
+  width:60%;
+  font-size:1rem;
+  color:white;
+  transition:.3s;
+}
+.quiz-option:hover{background:var(--red);color:white;}
+
+@keyframes float{
+  from{transform:translateY(0) scale(.8);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-120vh) scale(1.4);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+
+  <!-- HERO GIF -->
+  <div class="hero" id="hero">
+    <img src="https://media.tenor.com/i6FYyfAiT4QAAAAC/cute-bubu.gif" alt="Dudu & Bubu Cute">
+  </div>
+  <h1 id="title">Hey Mannat 💖</h1>
+  <p id="text">
+    Life is a journey 🌸<br>
+    and I want to walk every step with you 🥺👉👈<br><br>
+    Will you be my Valentine? 💘
+  </p>
+
+  <div class="buttons">
+    <button class="yes" onclick="yes()">Yes 💕</button>
+    <button class="no" id="noBtn" onclick="no()">No 🙈</button>
+  </div>
+
+</div>
+
+<script>
+let noStep = 0;
+
+function no(){
+  const hero = document.getElementById('hero');
+  const title = document.getElementById('title');
+  const text = document.getElementById('text');
+  noStep++;
+
+  if(noStep === 1){
+    hero.innerHTML = '<img src="https://media.tenor.com/A424aWO4KjQAAAAM/dudu-crying-texting.gif" alt="Crying Dudu">';
+    title.innerText = 'Are you sure? 😢';
+    text.innerHTML = 'Life is still a journey… 🥲<br>Think again, Mannat 💔';
+  }
+  else if(noStep === 2){
+    hero.innerHTML = '<img src="https://media1.tenor.com/m/dhuQV_msfiUAAAAd/cat-gun.gif" alt="Cat Gun Dudu">';
+    title.innerText = 'Last warning 😼';
+    text.innerHTML = 'See this 👀<br>Life is a journey…';
+  } 
+}
+
+function yes(){
+  const card = document.getElementById('card');
+  card.innerHTML=`
+    <div class="hero">
+      <img src="https://media.tenor.com/5Ftk0dN0FMUAAAAC/xd.gif" alt="Dudu & Bubu Hug">
+    </div>
+    <h1>Happy Valentine’s Day 💖</h1>
+    <p>
+      Dudu & Bubu hugging 😍💞<br>
+      Happy Valentine’s Day baby 💘✨
+    </p>
+    <button class="yes" onclick="gifts()">See gifts 🎁</button>
+  `;
+  // Hearts, flowers, balloons
+  for(let i=0;i<30;i++)heart();
+  for(let i=0;i<10;i++)flower();
+  for(let i=0;i<10;i++)balloon();
+}
+
+// Gifts
+function gifts(){
+  const card = document.getElementById('card');
+  card.innerHTML=`
+    <div class="hero"><img src="https://scontent.fluh1-4.fna.fbcdn.net/v/t1.15752-9/620514530_895381889860114_5912348217775662151_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_ohc=v_56BxQTICwQ7kNvwHuMSQq&_nc_oc=Adke8HcCFRL3CVsS00hqkkO9oBaGe9mCOOY8vUdvqZp1qL01NwuEBw04aWBz8xaHAbc&_nc_zt=23&_nc_ht=scontent.fluh1-4.fna&oh=03_Q7cD4gGUqMWrZwkVbh4594FYDvhNDslb8fujKY7j-H_R8GEPbA&oe=69A6932F" alt="Dudu Photo" style="width:200px;border-radius:16px;"></div>
+    <h1>Something for you 💕</h1>
+    <div class="gifts">
+      <button onclick="gift1()">Gift 1 🐱 (Quiz)</button>
+      <button onclick="gift2()">Gift 2 💌</button>
+      <button onclick="gift3()">Gift 3 📸</button>
+    </div>
+    <div id="gift"></div>
+  `;
+}
+
+// Gift 1 Quiz
+let quizStep = 0;
+function gift1(){ quizStep=0; showQuiz(); }
+function showQuiz(){
+  const gift = document.getElementById('gift');
+  if(quizStep===0){
+    gift.innerHTML=`
+      <img src="https://media.tenor.com/5Ftk0dN0FMUAAAAC/xd.gif"><br><br>
+      📝 Quiz 1:<br>Who is the boss in our relationship? 😏
+      <div class="quiz-option" onclick="quizNext(this)">Me 😎</div>
+      <div class="quiz-option" onclick="quizNext(this)">You 🥰</div>
+      <div class="quiz-option" onclick="quizNext(this)">Both equally 💞</div>
+    `;
+  } else if(quizStep===1){
+    gift.innerHTML=`
+      <img src="https://media.tenor.com/m/G7vfbumehEIAAAAC/bubu-bubu-dudu.gif"><br><br>
+      📝 Quiz 2:<br>Where should we go on our next adventure? 🌍
+      <div class="quiz-option" onclick="quizNext(this)">Beach 🏖️</div>
+      <div class="quiz-option" onclick="quizNext(this)">Mountains 🏔️</div>
+      <div class="quiz-option" onclick="quizNext(this)">Both! 🌟</div>
+    `;
+  } else if(quizStep===2){
+    gift.innerHTML=`<p>🎉 Quiz finished! 💖</p>
+      <button onclick="gift2()">Go to Gift 2 💌</button>`;
+  }
+}
+function quizNext(el){
+  el.style.background='var(--red)';
+  el.style.color='white';
+  setTimeout(()=>{ quizStep++; showQuiz(); },800);
+}
+
+// Gift 2 Letter
+function gift2(){
+  const gift = document.getElementById('gift');
+  gift.innerHTML=`
+    <img src="https://media.tenor.com/m/G7vfbumehEIAAAAC/bubu-bubu-dudu.gif"><br><br>
+    <p style="font-size:1.1rem; line-height:1.5;">
+      My love,<br><br>
+      Every moment with you feels like home. Your smile, your laugh, your heart—everything about you makes my world brighter. Today, and every day, I just want you to know: I love you, I choose you, and I’m so lucky to call you mine.<br><br>
+      Forever yours,<br>
+      <b>Kunal</b>
+    </p>
+    <button onclick="gift3()">Go to Gift 3 📸</button>
+  `;
+}
+
+// Gift 3 Photos
+function gift3(){
+  const gift = document.getElementById('gift');
+  gift.innerHTML=`
+    <img src="c:/Users/chand/Downloads/620483686_1163229732556578_5927981010801119737_n.jpg" style="width:100px;border-radius:10px;margin:5px;">
+    <img src="c:/Users/chand/Downloads/620228310_1171208018194646_432153149544251588_n.jpg" style="width:100px;border-radius:10px;margin:5px;">
+    <img src="c:/Users/chand/Downloads/619861032_1787682978590318_4447360291122560700_n.jpg" style="width:100px;border-radius:10px;margin:5px;">
+  `;
+}
+
+// Floating emojis
+function heart(){ createEmoji(['❤️','💖','💘','💕']); }
+function flower(){ createEmoji(['🌸','🌺','🌷','💐'],26); }
+function balloon(){ createEmoji(['🎈','🎉','🎊','💝'],40); }
+function createEmoji(arr,fontSize=26){
+  const e=document.createElement('div');
+  e.className=fontSize>30?'balloon':'heart';
+  e.innerText=arr[Math.floor(Math.random()*arr.length)];
+  e.style.left=Math.random()*100+'vw';
+  e.style.fontSize=fontSize+'px';
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),7000);
+}
+</script>
+
+</body>
+</html>
